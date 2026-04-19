@@ -30,4 +30,4 @@ streamlit run app.py
 - `jetlag_scaler.pkl` — Fitted StandardScaler
 
 ## Course
-CSCI 6366 Neural Networks & Deep Learning — GWU Spring 2026
+CSCI 6366 Neural Networks & Deep Learning - GWU Spring 2026
