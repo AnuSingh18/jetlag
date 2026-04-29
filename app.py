@@ -96,11 +96,11 @@ SENSOR_COLS = ['s2','s3','s4','s6','s7','s8','s9','s11','s12','s13','s14','s15',
 WINDOW_SIZE = 30
 
 MODEL_INFO = {
-    'FD001 — Single condition, HPC fault': {'file': 'jetlag_model.pth', 'rmse': 3.88, 'cz_rmse': 1.44},
-    'FD002 — Multi-condition, HPC fault':  {'file': 'model_fd002.pth',  'rmse': 13.57, 'cz_rmse': None},
-    'FD003 — Single condition, dual fault': {'file': 'model_fd003.pth', 'rmse': 3.79, 'cz_rmse': None},
-    'FD004 — Multi-condition, dual fault':  {'file': 'model_fd004.pth', 'rmse': 12.67, 'cz_rmse': None},
-    'Federated — Cross-fleet global model': {'file': 'federated_model.pth', 'rmse': None, 'cz_rmse': None},
+    'FD001 — Single condition, HPC fault': {'file': 'jetlag_model.pth', 'scaler': 'scaler_fd001.pkl', 'rmse': 3.88, 'cz_rmse': 1.44},
+    'FD002 — Multi-condition, HPC fault':  {'file': 'model_fd002.pth', 'scaler': 'scaler_fd002.pkl', 'rmse': 13.57, 'cz_rmse': None},
+    'FD003 — Single condition, dual fault': {'file': 'model_fd003.pth', 'scaler': 'scaler_fd003.pkl', 'rmse': 3.79, 'cz_rmse': None},
+    'FD004 — Multi-condition, dual fault':  {'file': 'model_fd004.pth', 'scaler': 'scaler_fd004.pkl', 'rmse': 12.67, 'cz_rmse': None},
+    'Federated — Cross-fleet global model': {'file': 'federated_model.pth', 'scaler': 'scaler_fd001.pkl', 'rmse': None, 'cz_rmse': None},
 }
 
 @st.cache_resource
@@ -114,11 +114,11 @@ def load_model(model_file):
         return None
 
 @st.cache_resource
-def load_scaler():
-    with open('jetlag_scaler.pkl', 'rb') as f:
+def load_scaler(scaler_file='scaler_fd001.pkl'):
+    with open(scaler_file, 'rb') as f:
         return pickle.load(f)
 
-scaler = load_scaler()
+# scaler loaded per model below
 
 def predict_with_uncertainty(model, x_tensor, n_samples=50):
     """Monte Carlo Dropout for uncertainty estimation"""
@@ -175,6 +175,7 @@ with st.sidebar:
 
 # ── Load model ──
 model = load_model(model_info['file'])
+scaler = load_scaler(model_info['scaler'])
 if model is None:
     st.warning(f"Model file {model_info['file']} not found. Using FD001 model.")
     model = load_model('jetlag_model.pth')
