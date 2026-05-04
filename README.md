@@ -2,7 +2,7 @@
 
 **Detecting Engine Fatigue Before It Fails**
 
-Live demo: [Deploy on Streamlit Cloud]
+Live demo: https://jetlag-anu.streamlit.app/
 
 ## What it does
 
