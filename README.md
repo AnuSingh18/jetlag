@@ -4,7 +4,7 @@
 
 Live demo: https://jetlag-anu.streamlit.app/
 
-Paper: JetLag: Turbofan RUL Prediction with Critical Zone Loss and Sensor Attribution — Anu Singh, GWU CSCI 6366, Spring 2026
+Paper: JetLag: Turbofan RUL Prediction with Critical Zone Loss and Sensor Attribution : Anu Singh, GWU CSCI 6366, Spring 2026
 
 ---
 
