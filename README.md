@@ -1,4 +1,4 @@
-# JetLag — Turbofan Engine RUL Predictor
+# JetLag - Turbofan Engine RUL Predictor
 
 **Detecting Engine Fatigue Before It Fails**
 
